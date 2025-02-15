@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@tailwind utilities;
+
+@layer base {
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+}
