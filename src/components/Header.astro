@@ -1,16 +1,114 @@
 ---
-// import CPCLogo = "../assets/cpc-text-logo.png";
+type Links = {
+  text: string;
+  href: string;
+};
+
+const JOIN_FORM = "https://forms.gle/KNQsRjctczBmYrg86";
+
+const LINKS: Links[] = [
+  { text: "AUCPL", href: "https://aucpl.com" },
+  { text: "About", href: "/about" },
+  { text: "Resources", href: "/resources" },
+  { text: "Sponsors", href: "/sponsors" },
+  { text: "Join", href: JOIN_FORM },
+];
 ---
 
-<header class="navbar bg-base-100 flex">
-    <a class="btn btn-ghost text-xl" href="/"
-        ><img src="" alt="ACPC Logo" />Competitive Programming Club</a
-    >
-    <nav>
-        <ul class="">
-            <li><a href="/about">About</a></li>
-            <li><a href="/sponsors">Sponsors</a></li>
-            <li><a href="https://forms.gle/KNQsRjctczBmYrg86">Join</a></li>
-        </ul>
+<header id="header" class="text-2xl">
+  <div class="hidden py-6 xl:flex mx-auto grow border-b-[1px] max-w-6xl">
+    <a class="font-bold" href="/">ACPC</a>
+    <nav class="flex grow pl-6 place-content-end">
+      <ul class="flex gap-6">
+        {
+          LINKS.map((link) => (
+            <li>
+              <a href={link.href}>{link.text}</a>
+            </li>
+          ))
+        }
+      </ul>
     </nav>
+  </div>
+
+  {/* Mobile */}
+  <div id="mobile-header" class="z-50 w-full px-8">
+    {/* Mobile header */}
+    <div class="flex xl:hidden py-4 w-full">
+      <div class="flex flex-1 place-content-between">
+        <a class="font-bold" href="/">ACPC</a>
+        <button>
+          <div
+            id="hamburger-menu"
+            class="grid place-content-center h-fit self-center"
+            aria-label="Toggle navigation"
+          >
+            <div class="header-bar bg-white w-[30px] h-0.5 my-1"></div>
+            <div class="header-bar bg-white w-[30px] h-0.5 my-1"></div>
+            <div class="header-bar bg-white w-[30px] h-0.5 my-1"></div>
+          </div>
+        </button>
+      </div>
+    </div>
+    {/* Mobile menu */}
+    <div
+      id="nav-menu"
+      style="display:none;"
+      class="flex flex-col h-screen overflow-y-scroll"
+    >
+      <nav class="pt-8">
+        <ul class="flex flex-col gap-6 mb-auto">
+          {
+            LINKS.map((link) => (
+              <li>
+                <a href={link.href}>{link.text}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
 </header>
+
+<style>
+  .open .header-bar:nth-of-type(1) {
+    transform: rotate(-45deg) translate(-2px, -3px);
+    transform-origin: bottom right;
+  }
+
+  .open .header-bar:nth-of-type(2) {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  .open .header-bar:nth-of-type(3) {
+    transform: rotate(45deg) translate(-2px, 3px);
+    transform-origin: top right;
+  }
+</style>
+
+<script is:inline>
+  let menuOpen = false;
+  const mobileHeader = document.getElementById("mobile-header");
+  const menuIcon = document.getElementById("hamburger-menu");
+  const menu = document.getElementById("nav-menu");
+  const header = document.getElementById("header");
+  const root = document.getElementById("root");
+
+  menuIcon.addEventListener("click", () => {
+    if (menuOpen) {
+      mobileHeader.classList.remove("bg-base");
+      header.classList.remove("open");
+      menu.style.display = "none";
+      root.style.overflowY = "visible";
+      menuOpen = false;
+    } else {
+      mobileHeader.classList.add("bg-base");
+      header.classList.add("open");
+      menu.style.display = "block";
+      root.style.overflowY = "hidden";
+      menuOpen = true;
+    }
+  });
+</script>

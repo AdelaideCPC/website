@@ -1,11 +1,137 @@
 ---
+import { mainTagCss } from "../layouts/Main.astro";
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 import Layout from "../layouts/Layout.astro";
+
+const EMAIL = "acpc@clubs.youx.org.au";
+const JOIN_LINK = "https://forms.gle/KNQsRjctczBmYrg86";
+const FACEBOOK_LINK = "https://www.facebook.com/groups/uoacpc";
+const DISCORD_LINK = "https://discord.gg/9yBJs68Sj4";
 ---
 
-<Layout>
+<Layout title="The Home of Competitive Programming in South Australia | ACPC">
+  <div id="home-hero" class="">
     <Header />
-    <main>
-        <p class="text-blue-600">Hello world</p>
-    </main>
-</Layout>
+    <div class={mainTagCss}>
+      <section class="py-8 lg:py-16">
+        <h1 class="font-bold text-4xl lg:text-6xl 2xl:text-8xl mb-8">
+          THE HOME OF <span class="text-primary">COMPETITIVE PROGRAMMING</span> IN
+          SOUTH AUSTRALIA
+        </h1>
+      </section>
+    </div>
+  </div>
+  <main class={mainTagCss}>
+    <section class="text-lg lg:text-xl my-16">
+      <h2 class="font-bold text-2xl lg:text-3xl 2xl:text-5xl mb-4">
+        What do we do?
+      </h2>
+      <ul>
+        <li class="mb-4">
+          <h3 class="font-bold text-xl lg:text-2xl">Regular workshops</h3>
+          <p>This is where we learn new stuff.</p>
+        </li>
+        <li class="mb-4">
+          <h3 class="font-bold text-xl lg:text-2xl">Practice competitions</h3>
+          <p>This is where we apply what we learnt.</p>
+        </li>
+        <li class="mb-4">
+          <h3 class="font-bold text-xl lg:text-2xl">Real competitions</h3>
+          <p>
+            This is where we apply what we learnt &mdash; but for prizes and
+            your name on Ravi's Trophy.
+          </p>
+        </li>
+        <li class="mb-4">
+          <h3 class="font-bold text-xl lg:text-2xl">Social gatherings</h3>
+          <p>
+            This is where we cry about stuff we didn't get and treat ourselves
+            with free food because we deserve it.
+          </p>
+        </li>
+        <li class="mb-4">
+          <h3 class="font-bold text-xl lg:text-2xl">Mock interviews</h3>
+          <p>
+            This is where we get experienced people to help us prepare for tech
+            interviews.
+          </p>
+        </li>
+        <li class="mb-4">
+          <h3 class="font-bold text-xl lg:text-2xl">Tech talks</h3>
+          <p>
+            And this is where we listen to guest lecturers or people from the
+            industry talk about cool stuff.
+          </p>
+        </li>
+      </ul>
+    </section>
+    <section class="text-lg lg:text-xl mb-16">
+      <h2 class="font-bold text-2xl lg:text-3xl 2xl:text-5xl mb-4">
+        How can I get started?
+      </h2>
+      <ul>
+        <li class="mb-4">
+          <h3 class="font-bold text-xl lg:text-2xl">
+            First, sign up <a href={JOIN_LINK} class="underline text-primary"
+              >here</a
+            >
+          </h3>
+          <p>
+            This registers you as a member of the club and automatically adds
+            you to the club's mailing list.
+          </p>
+        </li>
+        <li class="mb-4">
+          <h3 class="font-bold text-xl lg:text-2xl">
+            Next, join our <a
+              href={FACEBOOK_LINK}
+              class="underline text-primary">Facebook group</a
+            > and <a href={DISCORD_LINK} class="underline text-primary"
+              >Discord server</a
+            >.
+          </h3>
+          <p>
+            These are the platforms where we hang out. They are the best place
+            to interact with other club members, keep track of coming events, et
+            cetera.
+          </p>
+        </li>
+        <li class="mb-4">
+          <h3 class="font-bold text-xl lg:text-2xl">
+            And last but not least, remember to have fun!
+          </h3>
+        </li>
+      </ul>
+    </section>
+    <section class="text-lg lg:text-xl">
+      <h2 class="font-bold text-2xl lg:text-3xl 2xl:text-5xl mb-4">
+        Contact us
+      </h2>
+      <p class="pb-4">
+        As certified computer geeks we take pride in our social skills and would
+        love to hear from you.
+      </p>
+      <p class="pb-4">
+        For all official enquiries please email us at <a
+          href={`mailto:${EMAIL}`}
+          class="underline text-primary">{EMAIL}</a
+        >. If you just want to get in touch, you can do so via our Facebook
+        Group or our Discord Server.
+      </p>
+    </section>
+  </main>
+  <Footer />
+  <Layout /></Layout
+>
+
+<style>
+  #home-hero {
+    background-image: url("/images/rsp-seminar.jpg");
+    background-color: rgba(0, 0, 0, 0.6);
+    background-blend-mode: darken;
+    background-size: cover;
+    background-position-y: center;
+    width: 100%;
+  }
+</style>

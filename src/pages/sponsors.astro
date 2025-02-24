@@ -1,0 +1,31 @@
+---
+import SponsorCard from "../components/SponsorCard.astro";
+import Main from "../layouts/Main.astro";
+
+import CitSecLogo from "../assets/sponsors/citadel-securities.png";
+import IMCLogo from "../assets/sponsors/imc.svg";
+import JaneStreetLogo from "../assets/sponsors/jane-street.png";
+---
+
+<Main title="Sponsors | ACPC">
+  <div class="py-8 lg:py-16">
+    <h1 class="text-4xl lg:text-6xl font-bold">Sponsors</h1>
+    <section class="grid gap-8 py-8">
+      <SponsorCard
+        name="Citadel Securities"
+        description="Citadel Securities is the next-generation capital markets firm. We create efficient ways for buyers and sellers to come together; we innovative ways to price and absorb risk; and we develop new technologies to transform markets. Integrating deep financial, mathematical and engineering expertise, Citadel Securities delivers critical liquidity to central banks, financial institutions, government agencies, corporations, insurers and sovereign wealth funds."
+        image={CitSecLogo.src}
+      />
+      <SponsorCard
+        name="IMC"
+        description="From Amsterdam to Chicago, Sydney to Mumbai, IMC is where the brightest minds in quant research, tech, and trading come together to solve our industry’s most challenging problems. We hire the most exceptional people, then unleash their potential by giving them access to disruptive, cutting-edge technology including AI, machine learning, and large-scale computing."
+        image={IMCLogo.src}
+      />
+      <SponsorCard
+        name="Jane Street"
+        description="We were founded by a small group of traders and technologists in a tiny New York office. Today, we have more than 2600 employees across five global offices. We trade a broad range of asset classes on more than 200 venues in 45 countries. We innovate in tech, from functional programming to machine learning to programmable hardware. And while our proprietary trading business thrives, we put our expertise and experience to work for our clients."
+        image={JaneStreetLogo.src}
+      />
+    </section>
+  </div>
+</Main>

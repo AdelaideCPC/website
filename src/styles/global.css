@@ -1,11 +1,19 @@
 @import "tailwindcss";
 
-@tailwind utilities;
-
 @layer base {
-    *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
-    }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+}
+
+@theme {
+  --color-primary: #97D1B5;
+  --color-secondary: #55828B;
+  --color-accent: #3B6064;
+  --color-neutral: #aab9cf;
+  --color-base: #364958;
+
+  --font-sans: "Atkinson Hyperlegible Next", "Inter", "ui-sans-serif", "sans-serif";
 }

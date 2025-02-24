@@ -1,0 +1,36 @@
+---
+type FooterLinks = {
+  text: string;
+  href: string;
+};
+
+const FOOTER_LINKS: FooterLinks[] = [
+  { text: "Discord", href: "https://discord.gg/9yBJs68Sj4" },
+  { text: "Facebook", href: "https://www.facebook.com/groups/uoacpc" },
+  { text: "GitHub", href: "https://github.com/AdelaideCPC/" },
+  {
+    text: "LinkedIn",
+    href: "https://www.linkedin.com/company/competitive-programming-club-of-the-university-of-adelaide",
+  },
+];
+---
+
+<footer
+  class="px-8 xl:px-0 xl:mx-auto w-full max-w-6xl py-6 mt-16 border-t-[1px]"
+>
+  <div class="flex flex-col lg:flex-row lg:gap-4">
+    <p class="font-bold">Our links:</p>
+    <ul class="flex gap-4">
+      {
+        FOOTER_LINKS.map((link) => (
+          <li class="underline">
+            <a href={link.href}>{link.text}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div class="py-4">
+    <p>&copy; 2025 Adelaide Competitive Programming Club.</p>
+  </div>
+</footer>

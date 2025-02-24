@@ -1,0 +1,107 @@
+---
+import Main from "../layouts/Main.astro";
+
+type Position = {
+  title: string;
+  people: string; // Comma-separated
+};
+
+const POSITIONS: Position[] = [
+  { title: "President", people: "Irhas Gill" },
+  { title: "Vice President", people: "Zach Anderson" },
+  { title: "Secretary", people: "Nic Ataiza" },
+  { title: "Treasurer", people: "Jackson Bunting" },
+  {
+    title: "Industry Liaisons",
+    people: "Xiaoyu Tan, Lachy Schinnick, Ramin Shahu",
+  },
+  {
+    title: "Social Media Managers",
+    people: "Roselyn Hoffmann, Mehdi Mahzounieh",
+  },
+  {
+    title: "Event Coordinators",
+    people: "Mahir Numayeer Islam, Syeda Ramisa Fariha, Shaun Phillips",
+  },
+  {
+    title: "Web Developers",
+    people: "Maged Gayed, Kevin Lac, Justin Sun, Henry Nguyen",
+  },
+];
+---
+
+<Main title="About | ACPC">
+  <div class="pt-8 lg:pt-16">
+    <h1 class="text-4xl lg:text-6xl font-bold mb-16">About</h1>
+    <section class="mb-8">
+      <h2 class="text-2xl lg:text-4xl">Who are we?</h2>
+      <div class="py-4">
+        <p class="pb-4 text-lg lg:text-xl">
+          The Adelaide Competitive Programming Club is a not-for-profit,
+          student-run club dedicated to promote and nurture the sport of (you
+          guessed it)
+          <i>Competitive Programming</i> at The University of Adelaide. We host competitions
+          and training workshops where we solve problems, discuss algorithms, cry
+          over the parts we didn't understand, figure things out, and celebrate with
+          free food.
+        </p>
+        <p class="pb-4 text-lg lg:text-xl">
+          If you think you're the next Larry Page, this is not the club for you.
+          If you want to be the next Larry Page, then this club might be what
+          you're looking for. All skill levels are welcome because, let's be
+          honest, everyone is going to struggle.
+        </p>
+      </div>
+    </section>
+    <section class="mb-8">
+      <h2 class="text-2xl lg:text-4xl">What is competitive programming?</h2>
+      <div class="py-4">
+        <p class="pb-4 text-lg lg:text-xl">
+          Competitive programming is a mind sport usually held over the Internet
+          or a local network, involving participants trying to program according
+          to provided specifications (totally not copied from Wikipedia).
+        </p>
+        <p class="pb-4 text-lg lg:text-xl">
+          In essence, it is about solving ridiculously difficult problems within
+          unfairly short time limits (because why not).
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl lg:text-4xl">
+        Why should I care about competitive programming?
+      </h2>
+      <div class="py-4">
+        <p class="pb-4 text-lg lg:text-xl">
+          Because it's fun! Ask <s>anyone</s> most people who have done these contests
+          &mdash; they are addicting and fun.
+        </p>
+        <p class="pb-4 text-lg lg:text-xl">
+          Employment: Most competitions are sponsored by multinational software
+          companies such as Google, Microsoft, IBM, etc. Each year, they take
+          students who performed well in the contest and offer them positions.
+        </p>
+        <p class="pb-4 text-lg lg:text-xl">
+          Love of problem solving: The problems that you will see are posed as
+          real-world problems, and often will mask the underlying question. You
+          will need to use many ideas that you have learnt in order to solve
+          them.
+        </p>
+      </div>
+    </section>
+    <section>
+      <h2 class="text-2xl lg:text-4xl">Committee for 2025</h2>
+      <div class="py-4">
+        <ul class="list-disc list-inside text-lg lg:text-xl">
+          {
+            POSITIONS.map((position) =>
+              // prettier-ignore
+              <li><b>{position.title}:</b> {position.people}</li>
+            )
+          }
+        </ul>
+      </div>
+    </section>
+  </div>
+</Main>
