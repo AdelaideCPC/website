@@ -11,11 +11,13 @@
 @font-face {
   font-family: "Atkinson Hyperlegible Next";
   src: url("/fonts/AtkinsonHyperlegibleNext-VariableFont_wght.woff2");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Atkinson Hyperlegible Next";
   src: url("/fonts/AtkinsonHyperlegibleNext-Italic-VariableFont_wght.woff2");
+  font-display: swap;
   font-style: italic;
 }
 
