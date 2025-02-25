@@ -14,13 +14,21 @@ const DEFAULT_DESCRIPTION = "Adelaide Competitive Programming Club";
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description ?? DEFAULT_DESCRIPTION} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <title>{title ?? DEFAULT_TITLE}</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&display=swap"
-      rel="stylesheet"
+      href="/fonts/AtkinsonHyperlegibleNext-VariableFont_wght.woff2"
+      rel="preconnect"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
+    <link
+      href="/fonts/AtkinsonHyperlegibleNext-Italic-VariableFont_wght.woff2"
+      rel="preconnect"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <title>{title ?? DEFAULT_TITLE}</title>
   </head>
   <body class="bg-base">
     <div id="root" class="h-screen text-white flex flex-col relative">

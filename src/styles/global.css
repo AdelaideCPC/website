@@ -8,10 +8,21 @@
   }
 }
 
+@font-face {
+  font-family: "Atkinson Hyperlegible Next";
+  src: url("/fonts/AtkinsonHyperlegibleNext-VariableFont_wght.woff2");
+}
+
+@font-face {
+  font-family: "Atkinson Hyperlegible Next";
+  src: url("/fonts/AtkinsonHyperlegibleNext-Italic-VariableFont_wght.woff2");
+  font-style: italic;
+}
+
 @theme {
-  --color-primary: #97D1B5;
-  --color-secondary: #55828B;
-  --color-accent: #3B6064;
+  --color-primary: #97d1b5;
+  --color-secondary: #55828b;
+  --color-accent: #3b6064;
   --color-neutral: #aab9cf;
   --color-base: #364958;
 
