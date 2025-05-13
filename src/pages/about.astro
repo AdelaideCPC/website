@@ -6,28 +6,82 @@ type Position = {
   people: string; // Comma-separated
 };
 
-const POSITIONS: Position[] = [
+const EXECUTIVES: Position[] = [
   { title: "President", people: "Irhas Gill" },
-  { title: "Vice President", people: "Zach Anderson" },
-  { title: "Secretary", people: "Nic Ataiza" },
+  { title: "Vice President", people: "Patrick Thompson" },
+  { title: "Secretary", people: "Brooke Bui" },
   { title: "Treasurer", people: "Jackson Bunting" },
+  { title: "AUCPL Manager", people: "Maged Gayed"}
+];
+const MANAGERS: Position[] = [
   {
-    title: "Industry Liaisons",
-    people: "Xiaoyu Tan, Lachy Schinnick, Ramin Shahu",
+    title: "Sponsorships Manager",
+    people: "Liv Aston",
   },
   {
-    title: "Social Media Managers",
-    people: "Roselyn Hoffmann, Mehdi Mahzounieh",
+    title: "Social Media Manager",
+    people: "Roselyn Hoffmann",
   },
   {
-    title: "Event Coordinators",
-    people: "Mahir Numayeer Islam, Syeda Ramisa Fariha, Shaun Phillips",
+    title: "Events Manager",
+    people: "Shaun Phillips",
   },
   {
-    title: "Web Developers",
-    people: "Maged Gayed, Kevin Lac, Justin Sun, Henry Nguyen",
+    title: "Graphics Design Manager",
+    people: "Mansi Patel",
+  },
+  {
+    title: "Infracture Manager",
+    people: "Ray Okamoto",
   },
 ];
+
+const POSITIONS: Position[] = [
+  {
+    title: "Sponsorships Officers",
+    people: "Xiaoyu Tan, Lachy Schinnick, Brooke Wang",
+  },
+  {
+    title: "Social Media Officers",
+    people: "Mehdi Mahzounieh, Yaline Vong, Samuel Munaro, Rohan Soni",
+  },
+  {
+    title: "Events Officers",
+    people: "Mahir Numayeer Islam, Jason Huang, Sam Austin, Nic Ataiza",
+  },
+  {
+    title: "Graphics Design Officers",
+    people: "Ngoc Han Ngo, Lucas Lim",
+  },
+  {
+    title: "Developers",
+    people: "Nelson Then, Chowdhury Nur E Alam Siddiqi, Mehdi Mirzaie, Rishank Goyal",
+  },
+  {
+    title: "AUCPL Officers",
+    people: "Kevin Lac, Shahid Hussain",
+  },
+];
+
+const AUCPL: Position[] = [
+  {
+    title: "AUCPL Manager",
+    people: "Maged Gayed",
+  },
+  {
+    title: "AUCPL Education Manager",
+    people: "Zachary Anderson",
+  },
+  {
+    title: "Division A",
+    people: "Tom Frew, Maged Gayed, Kevin Lac, Patrick Thompson, Jack Morton, Ren You, Ray Okamoto, Segun Kayode, Timothy Choi",
+  },
+  {
+    title: "Division B",
+    people: "Zachary Anderson, Patrick Thompson, Ray Okamoto, Mahir Numayeer Islam, Shahid Hussain, Maged Gayed, Kevin Lac",
+  },
+];
+
 ---
 
 <Main title="About | ACPC">
@@ -91,12 +145,45 @@ const POSITIONS: Position[] = [
       </div>
     </section>
     <section>
+      <h2 class="text-2xl lg:text-4xl">Executives for 2025</h2>
+      <div class="py-4">
+        <ul class="list-disc list-inside text-lg lg:text-xl">
+          {
+            EXECUTIVES.map((position) =>
+              //prettier-ignore
+              <li><b>{position.title}:</b> {position.people}</li>
+            )
+          }
+        </ul>
+      </div>
+      <h2 class="text-2xl lg:text-4xl">Team Managers for 2025</h2>
+      <div class="py-4">
+        <ul class="list-disc list-inside text-lg lg:text-xl">
+          {
+            MANAGERS.map((position) =>
+              //prettier-ignore
+              <li><b>{position.title}:</b> {position.people}</li>
+            )
+          }
+        </ul>
+      </div>
       <h2 class="text-2xl lg:text-4xl">Committee for 2025</h2>
       <div class="py-4">
         <ul class="list-disc list-inside text-lg lg:text-xl">
           {
             POSITIONS.map((position) =>
-              // prettier-ignore
+              //prettier-ignore
+              <li><b>{position.title}:</b> {position.people}</li>
+            )
+          }
+        </ul>
+      </div>
+      <h2 class="text-2xl lg:text-4xl">AUCPL Team for 2025</h2>
+      <div class="py-4">
+        <ul class="list-disc list-inside text-lg lg:text-xl">
+          {
+            AUCPL.map((position) =>
+              //prettier-ignore
               <li><b>{position.title}:</b> {position.people}</li>
             )
           }
