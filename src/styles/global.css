@@ -22,11 +22,11 @@
 }
 
 @theme {
-  --color-primary: #97d1b5;
-  --color-secondary: #55828b;
-  --color-accent: #3b6064;
+  --color-primary: #cc1a00;
+  --color-secondary: #48b7fd;
+  --color-accent: #27272b;
   --color-neutral: #aab9cf;
-  --color-base: #364958;
+  --color-base: #151517;
 
   --font-sans: "Atkinson Hyperlegible Next", "ui-sans-serif", "sans-serif";
 }

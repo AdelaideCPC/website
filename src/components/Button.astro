@@ -1,0 +1,28 @@
+---
+interface Props {
+  text: string;
+  href?: string;
+  variant?: "filled" | "empty";
+}
+
+const { text, href, variant } = Astro.props;
+
+const hasLink = href && href.length > 0;
+
+const variantStyle =
+  variant === "empty"
+    ? "bg-transparent text-primary hover:text-white hover:border-white"
+    : "bg-primary text-white hover:bg-transparent hover:text-primary";
+
+const style = `${variantStyle} border-2 border-primary py-4 px-16 text-xl transition duration-400`;
+---
+
+{
+  hasLink ? (
+    <a href={href} class={style}>
+      {text}
+    </a>
+  ) : (
+    <button class={style}>{text}</button>
+  )
+}

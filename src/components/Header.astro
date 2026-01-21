@@ -1,4 +1,10 @@
 ---
+interface Props {
+  noBorder?: boolean;
+}
+
+const { noBorder = false } = Astro.props;
+
 type Links = {
   text: string;
   href: string;
@@ -9,26 +15,35 @@ const JOIN_FORM = "https://forms.gle/KNQsRjctczBmYrg86";
 const LINKS: Links[] = [
   { text: "AUCPL", href: "https://aucpl.com" },
   { text: "About", href: "/about" },
+  { text: "Events", href: "/events" },
   { text: "Resources", href: "/resources" },
   { text: "Sponsors", href: "/sponsors" },
   { text: "Join", href: JOIN_FORM },
 ];
 ---
 
-<header id="header" class="text-2xl">
-  <div class="hidden py-6 xl:flex mx-auto grow border-b-[1px] max-w-6xl">
-    <a class="font-bold" href="/">ACPC</a>
-    <nav class="flex grow pl-6 place-content-end">
-      <ul class="flex gap-6">
-        {
-          LINKS.map((link) => (
-            <li>
-              <a href={link.href}>{link.text}</a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+<header id="header" class="text-xl">
+  <div class=`hidden xl:block ${noBorder ? "" : "border-b"} z-50`>
+    <div class="mx-auto max-w-7xl flex grow py-4">
+      <a href="/">
+        <img
+          src="/acpc-logo-short.svg"
+          alt="ACPC Logo"
+          class="h-12 mr-4 inline-block"
+        />
+      </a>
+      <nav class="flex grow pl-6 place-content-end items-center">
+        <ul class="flex gap-6">
+          {
+            LINKS.map((link) => (
+              <li>
+                <a href={link.href}>{link.text}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
   </div>
 
   {/* Mobile */}
@@ -36,7 +51,13 @@ const LINKS: Links[] = [
     {/* Mobile header */}
     <div class="flex xl:hidden py-4 w-full">
       <div class="flex flex-1 place-content-between">
-        <a class="font-bold" href="/">ACPC</a>
+        <a href="/">
+          <img
+            src="/acpc-logo-short.svg"
+            alt="ACPC Logo"
+            class="h-10 mr-4 inline-block"
+          />
+        </a>
         <button>
           <div
             id="hamburger-menu"

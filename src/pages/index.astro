@@ -1,8 +1,10 @@
 ---
-import { mainTagCss } from "../layouts/Main.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import Layout from "../layouts/Layout.astro";
+import { mainTagCss } from "@/layouts/Main.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Layout from "@/layouts/Layout.astro";
+
+import Button from "@/components/Button.astro";
 
 const EMAIL = "acpc@clubs.youx.org.au";
 const JOIN_LINK = "https://forms.gle/KNQsRjctczBmYrg86";
@@ -12,112 +14,111 @@ const DISCORD_LINK = "https://discord.gg/9yBJs68Sj4";
 
 <Layout title="The Home of Competitive Programming in South Australia | ACPC">
   <div id="home-hero" class="">
-    <Header />
+    <Header noBorder={true} />
     <div class={mainTagCss}>
-      <section class="py-8 lg:py-16">
-        <h1 class="font-bold text-4xl lg:text-6xl 2xl:text-8xl mb-8">
-          THE HOME OF <span class="text-primary">COMPETITIVE PROGRAMMING</span> IN
-          SOUTH AUSTRALIA
+      <section class="py-8 lg:py-16 h-[80vh]">
+        <h1
+          class="font-bold text-4xl sm:text-6xl lg:text-7xl 2xl:text-8xl mb-8 mt-16"
+        >
+          THE HOME OF <span class="text-primary">COMPETITIVE PROGRAMMING</span>
+          <br />IN SOUTH AUSTRALIA
         </h1>
+        <div class="py-4 2xl:py-10"></div>
+        <div class="flex flex-wrap gap-4">
+          <Button text="Join ACPC" href={JOIN_LINK} />
+          <Button variant="empty" href="/about" text="About Us" />
+        </div>
       </section>
     </div>
   </div>
   <main class={mainTagCss}>
-    <section class="text-lg lg:text-xl my-16">
-      <h2 class="font-bold text-2xl lg:text-3xl 2xl:text-5xl mb-4">
-        What do we do?
+    <section class="text-lg lg:text-xl mt-16 mb-32">
+      <h2 class="font-bold text-4xl lg:text-6xl 2xl:text-7xl mb-4">
+        AUCPL 2026
       </h2>
-      <ul>
-        <li class="mb-4">
-          <h3 class="font-bold text-xl lg:text-2xl">Regular workshops</h3>
-          <p>This is where we learn new stuff.</p>
-        </li>
-        <li class="mb-4">
-          <h3 class="font-bold text-xl lg:text-2xl">Practice competitions</h3>
-          <p>This is where we apply what we learnt.</p>
-        </li>
-        <li class="mb-4">
-          <h3 class="font-bold text-xl lg:text-2xl">Real competitions</h3>
-          <p>
-            This is where we apply what we learnt &mdash; but for prizes and
-            your name on Ravi's Trophy.
-          </p>
-        </li>
-        <li class="mb-4">
-          <h3 class="font-bold text-xl lg:text-2xl">Social gatherings</h3>
-          <p>
-            This is where we cry about stuff we didn't get and treat ourselves
-            with free food because we deserve it.
-          </p>
-        </li>
-        <li class="mb-4">
-          <h3 class="font-bold text-xl lg:text-2xl">Mock interviews</h3>
-          <p>
-            This is where we get experienced people to help us prepare for tech
-            interviews.
-          </p>
-        </li>
-        <li class="mb-4">
-          <h3 class="font-bold text-xl lg:text-2xl">Tech talks</h3>
-          <p>
-            And this is where we listen to guest lecturers or people from the
-            industry talk about cool stuff.
-          </p>
-        </li>
-      </ul>
+      <div class="text-lg xl:text-xl text-right py-4">
+        <p class="mb-4">
+          The Adelaide University Competitive Programming League is back for
+          2026!
+        </p>
+        <p class="mb-4">
+          Whether you're new to competitive programming or a seasoned veteran,
+          we tailor to all skill levels
+        </p>
+      </div>
+      <div class="grid grid-rows-2 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-4 mb-8">
+          <div class="col-span-1 lg:col-span-3 bg-accent p-8">
+            For seasoned competitive programmers and those looking for a
+            challenge. Come along for a challenge, for prizes, and to prepare
+            for ICPC!
+          </div>
+          <div class="pl-6"><h3 class="text-5xl">DIVISION A</h3></div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-4 py-2">
+          <div class="pr-6 text-right">
+            <h3 class="text-5xl">DIVISION B</h3>
+          </div>
+          <div class="col-span-1 lg:col-span-3 bg-accent p-8">
+            For those who are new to competitive programming. You'll learn the
+            fundamentals of data structures and algorithms, and learn how to
+            become a competitive programmer.
+          </div>
+        </div>
+      </div>
+      <div class="my-8">
+        <Button text="Visit AUCPL" href="https://aucpl.com" />
+      </div>
     </section>
-    <section class="text-lg lg:text-xl mb-16">
-      <h2 class="font-bold text-2xl lg:text-3xl 2xl:text-5xl mb-4">
-        How can I get started?
-      </h2>
-      <ul>
-        <li class="mb-4">
-          <h3 class="font-bold text-xl lg:text-2xl">
-            First, sign up <a href={JOIN_LINK} class="underline text-primary"
-              >here</a
-            >
-          </h3>
+    <section class="text-lg lg:text-xl mb-32">
+      <h2 class="font-bold text-4xl lg:text-6xl 2xl:text-7xl mb-4">ALL UNI</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-3 place-items-end">
+        <div></div>
+        <div class="lg:col-span-2 text-lg xl:text-xl text-right py-4 pb-16">
           <p>
-            This registers you as a member of the club and automatically adds
-            you to the club's mailing list.
+            AllUni is an annual inter-university programming contest bringing
+            together the brightest minds across Australia and New Zealand.
           </p>
-        </li>
-        <li class="mb-4">
-          <h3 class="font-bold text-xl lg:text-2xl">
-            Next, join our <a
-              href={FACEBOOK_LINK}
-              class="underline text-primary">Facebook group</a
-            > and <a href={DISCORD_LINK} class="underline text-primary"
-              >Discord server</a
-            >.
-          </h3>
-          <p>
-            These are the platforms where we hang out. They are the best place
-            to interact with other club members, keep track of coming events, et
-            cetera.
-          </p>
-        </li>
-        <li class="mb-4">
-          <h3 class="font-bold text-xl lg:text-2xl">
-            And last but not least, remember to have fun!
-          </h3>
-        </li>
-      </ul>
+        </div>
+      </div>
+      <div class="grid grid-cols-2">
+        <div class="grid-rows-2">
+          <img
+            src="/images/alluni/alluni2.webp"
+            alt="Students in a computer lab competing in a contest"
+          />
+
+          <img
+            src="/images/alluni/alluni4.webp"
+            alt="Students sitting in a lecture theatre"
+          />
+        </div>
+        <div>
+          <img
+            class="h-full object-cover"
+            src="/images/alluni/alluni1.webp"
+            alt="Students in a computer lab competing in a contest"
+          />
+        </div>
+      </div>
+      <div class="my-20">
+        <Button text="Visit AllUni" href="https://alluni.io" />
+      </div>
     </section>
     <section class="text-lg lg:text-xl">
-      <h2 class="font-bold text-2xl lg:text-3xl 2xl:text-5xl mb-4">
-        Contact us
+      <h2 class="font-bold text-4xl lg:text-6xl 2xl:text-7xl mb-4">
+        CONTACT US
       </h2>
       <p class="pb-4">
-        As certified computer geeks we take pride in our social skills and would
-        love to hear from you.
+        If you have any questions about the club, AUCPL, AllUni, or competitive
+        programming in general, feel free to reach out!
       </p>
       <p class="pb-4">
         For all official enquiries please email us at <a
           href={`mailto:${EMAIL}`}
           class="underline text-primary">{EMAIL}</a
-        >. If you just want to get in touch, you can do so via our Facebook
-        Group or our Discord Server.
+        >. If you just want to get in touch, you can do so via Instagram or our
+        Discord server.
       </p>
     </section>
   </main>

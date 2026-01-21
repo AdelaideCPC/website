@@ -7,81 +7,12 @@ type Position = {
 };
 
 const EXECUTIVES: Position[] = [
-  { title: "President", people: "Irhas Gill" },
-  { title: "Vice President", people: "Patrick Thompson" },
+  { title: "President", people: "Maged Gayed" },
+  { title: "Vice President", people: "Jonathan Sawers" },
   { title: "Secretary", people: "Brooke Bui" },
-  { title: "Treasurer", people: "Jackson Bunting" },
-  { title: "AUCPL Manager", people: "Maged Gayed"}
+  { title: "Treasurer", people: "Shaun Phillips" },
+  { title: "Competitions Director", people: "Patrick Thompson" },
 ];
-const MANAGERS: Position[] = [
-  {
-    title: "Sponsorships Manager",
-    people: "Liv Aston",
-  },
-  {
-    title: "Social Media Manager",
-    people: "Roselyn Hoffmann",
-  },
-  {
-    title: "Events Manager",
-    people: "Shaun Phillips",
-  },
-  {
-    title: "Graphics Design Manager",
-    people: "Mansi Patel",
-  },
-  {
-    title: "Infracture Manager",
-    people: "Ray Okamoto",
-  },
-];
-
-const POSITIONS: Position[] = [
-  {
-    title: "Sponsorships Officers",
-    people: "Xiaoyu Tan, Lachy Schinnick, Brooke Wang",
-  },
-  {
-    title: "Social Media Officers",
-    people: "Mehdi Mahzounieh, Yaline Vong, Samuel Munaro, Rohan Soni",
-  },
-  {
-    title: "Events Officers",
-    people: "Mahir Numayeer Islam, Jason Huang, Sam Austin, Nic Ataiza",
-  },
-  {
-    title: "Graphics Design Officers",
-    people: "Ngoc Han Ngo, Lucas Lim",
-  },
-  {
-    title: "Developers",
-    people: "Nelson Then, Chowdhury Nur E Alam Siddiqi, Mehdi Mirzaie, Rishank Goyal",
-  },
-  {
-    title: "AUCPL Officers",
-    people: "Kevin Lac, Shahid Hussain",
-  },
-];
-
-const AUCPL: Position[] = [
-  {
-    title: "AUCPL Manager",
-    people: "Maged Gayed",
-  },
-  {
-    title: "AUCPL Education Manager",
-    people: "Zachary Anderson",
-  },
-  {
-    title: "Division A",
-    people: "Tom Frew, Maged Gayed, Kevin Lac, Patrick Thompson, Jack Morton, Ren You, Ray Okamoto, Segun Kayode, Timothy Choi",
-  },
-  {
-    title: "Division B",
-    people: "Zachary Anderson, Patrick Thompson, Ray Okamoto, Mahir Numayeer Islam, Shahid Hussain, Maged Gayed, Kevin Lac",
-  },
-];
-
 ---
 
 <Main title="About | ACPC">
@@ -91,33 +22,47 @@ const AUCPL: Position[] = [
       <h2 class="text-2xl lg:text-4xl">Who are we?</h2>
       <div class="py-4">
         <p class="pb-4 text-lg lg:text-xl">
-          The Adelaide Competitive Programming Club is a not-for-profit,
-          student-run club dedicated to promote and nurture the sport of (you
-          guessed it)
-          <i>Competitive Programming</i> at The University of Adelaide. We host competitions
-          and training workshops where we solve problems, discuss algorithms, cry
-          over the parts we didn't understand, figure things out, and celebrate with
-          free food.
-        </p>
-        <p class="pb-4 text-lg lg:text-xl">
-          If you think you're the next Larry Page, this is not the club for you.
-          If you want to be the next Larry Page, then this club might be what
-          you're looking for. All skill levels are welcome because, let's be
-          honest, everyone is going to struggle.
+          We are the Adelaide Competitive Programming Club (ACPC), a
+          not-for-profit, student-run club. We love competitive programming and
+          the unique problem-solving challenges it presents, and we aim to bring
+          it to the widest possible audience by running regular competitions,
+          workshops, and social events.
         </p>
       </div>
     </section>
+
     <section class="mb-8">
-      <h2 class="text-2xl lg:text-4xl">What is competitive programming?</h2>
+      <h2 class="text-2xl lg:text-4xl">What do we do?</h2>
       <div class="py-4">
         <p class="pb-4 text-lg lg:text-xl">
-          Competitive programming is a mind sport usually held over the Internet
-          or a local network, involving participants trying to program according
-          to provided specifications (totally not copied from Wikipedia).
+          We run regular workshops and contests, which forms the core of our
+          club activities. We also have social gatherings such as BBQs to
+          provide an opportunity for members to socialise and network.
         </p>
+
         <p class="pb-4 text-lg lg:text-xl">
-          In essence, it is about solving ridiculously difficult problems within
-          unfairly short time limits (because why not).
+          You can check out our Instagram page and our Discord server to keep up
+          to date with the latest events!
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl lg:text-4xl">Our values</h2>
+      <div class="py-4">
+        <p class="pb-4 text-lg lg:text-xl">Our values are to:</p>
+        <ul class="pb-4 text-lg lg:text-xl list-disc list-inside">
+          <li>Foster a passion for competitive programming</li>
+          <li>Promote teamwork and problem-solving</li>
+          <li>Encourage learning at all skill levels</li>
+          <li>Create a friendly and inclusive community</li>
+        </ul>
+        <p class="pb-4 text-lg lg:text-xl">
+          We dedicate our events and work in the pursuit of these goals. It also
+          happens that the skills we practice in our workshops and contests are
+          desired by many tech companies, and we endeavour to help our members
+          be career-ready through our events by connecting them with the
+          industry and their potential future employers.
         </p>
       </div>
     </section>
@@ -128,63 +73,21 @@ const AUCPL: Position[] = [
       </h2>
       <div class="py-4">
         <p class="pb-4 text-lg lg:text-xl">
-          Because it's fun! Ask <s>anyone</s> most people who have done these contests
-          &mdash; they are addicting and fun.
-        </p>
-        <p class="pb-4 text-lg lg:text-xl">
-          Employment: Most competitions are sponsored by multinational software
-          companies such as Google, Microsoft, IBM, etc. Each year, they take
-          students who performed well in the contest and offer them positions.
-        </p>
-        <p class="pb-4 text-lg lg:text-xl">
-          Love of problem solving: The problems that you will see are posed as
-          real-world problems, and often will mask the underlying question. You
-          will need to use many ideas that you have learnt in order to solve
-          them.
+          People like competitive programming for various reasons. Some like the
+          challenge it presents, while others do it to level up their skills to
+          be more employable. Others just do it for the fun of it!
         </p>
       </div>
     </section>
+
     <section>
-      <h2 class="text-2xl lg:text-4xl">Executives for 2025</h2>
+      <h2 class="text-2xl lg:text-4xl">Executives for 2026</h2>
       <div class="py-4">
         <ul class="list-disc list-inside text-lg lg:text-xl">
           {
             EXECUTIVES.map((position) =>
               //prettier-ignore
-              <li><b>{position.title}:</b> {position.people}</li>
-            )
-          }
-        </ul>
-      </div>
-      <h2 class="text-2xl lg:text-4xl">Team Managers for 2025</h2>
-      <div class="py-4">
-        <ul class="list-disc list-inside text-lg lg:text-xl">
-          {
-            MANAGERS.map((position) =>
-              //prettier-ignore
-              <li><b>{position.title}:</b> {position.people}</li>
-            )
-          }
-        </ul>
-      </div>
-      <h2 class="text-2xl lg:text-4xl">Committee for 2025</h2>
-      <div class="py-4">
-        <ul class="list-disc list-inside text-lg lg:text-xl">
-          {
-            POSITIONS.map((position) =>
-              //prettier-ignore
-              <li><b>{position.title}:</b> {position.people}</li>
-            )
-          }
-        </ul>
-      </div>
-      <h2 class="text-2xl lg:text-4xl">AUCPL Team for 2025</h2>
-      <div class="py-4">
-        <ul class="list-disc list-inside text-lg lg:text-xl">
-          {
-            AUCPL.map((position) =>
-              //prettier-ignore
-              <li><b>{position.title}:</b> {position.people}</li>
+              <li><b>{position.title}:</b> {position.people}</li>,
             )
           }
         </ul>

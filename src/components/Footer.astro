@@ -6,6 +6,7 @@ type FooterLinks = {
 
 const FOOTER_LINKS: FooterLinks[] = [
   { text: "Discord", href: "https://discord.gg/9yBJs68Sj4" },
+  { text: "Instagram", href: "https://www.instagram.com/adelaidecpc" },
   { text: "Facebook", href: "https://www.facebook.com/groups/uoacpc" },
   { text: "GitHub", href: "https://github.com/AdelaideCPC/" },
   {
@@ -15,22 +16,22 @@ const FOOTER_LINKS: FooterLinks[] = [
 ];
 ---
 
-<footer
-  class="px-8 xl:px-0 xl:mx-auto w-full max-w-6xl py-6 mt-16 border-t-[1px]"
->
-  <div class="flex flex-col lg:flex-row lg:gap-4">
-    <p class="font-bold">Our links:</p>
-    <ul class="flex gap-4">
-      {
-        FOOTER_LINKS.map((link) => (
-          <li class="underline">
-            <a href={link.href}>{link.text}</a>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
-  <div class="py-4">
-    <p>&copy; 2025 Adelaide Competitive Programming Club.</p>
+<footer class="mt-16 border-t">
+  <div class="flex flex-col mx-auto max-w-7xl py-6 px-8 xl:px-0">
+    <div class="flex flex-col lg:flex-row lg:gap-4">
+      <p class="font-bold">Our links:</p>
+      <ul class="flex flex-wrap gap-2 md:gap-4">
+        {
+          FOOTER_LINKS.map((link) => (
+            <li class="underline">
+              <a href={link.href}>{link.text}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="py-4">
+      <p>&copy; 2026 Adelaide Competitive Programming Club.</p>
+    </div>
   </div>
 </footer>
