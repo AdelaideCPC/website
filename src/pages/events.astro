@@ -1,13 +1,21 @@
 ---
-import Main from "../layouts/Main.astro";
+import Main from "@/layouts/Main.astro";
 import EventCard from "@/components/EventCard.astro";
 
 import { EVENTS } from "@/data/events";
+import { DISCORD_LINK } from "@/data/links";
 ---
 
 <Main title="Events | ACPC">
   <div class="py-8 lg:py-16">
     <h1 class="text-4xl lg:text-6xl font-bold font-heading">Events</h1>
+    <section>
+      <p class="mt-4 text-xl">
+        Join our <a class="text-primary-light" href={DISCORD_LINK}
+          >Discord server</a
+        > for the most up-to-date information on upcoming events!
+      </p>
+    </section>
     <section class="py-8">
       {
         EVENTS.map((event) => (
