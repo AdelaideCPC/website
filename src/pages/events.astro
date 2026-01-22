@@ -1,12 +1,25 @@
 ---
 import Main from "../layouts/Main.astro";
+import EventCard from "@/components/EventCard.astro";
+
+import { EVENTS } from "@/data/events";
 ---
 
 <Main title="Events | ACPC">
   <div class="py-8 lg:py-16">
     <h1 class="text-4xl lg:text-6xl font-bold">Events</h1>
     <section class="py-8">
-      <p class="text-lg lg:text-xl">Coming soon...</p>
+      {
+        EVENTS.map((event) => (
+          <EventCard
+            title={event.title}
+            description={event.description}
+            date={event.date}
+            {...(event.location && { location: event.location })}
+            {...(event.link && { link: event.link })}
+          />
+        ))
+      }
     </section>
   </div>
 </Main>
