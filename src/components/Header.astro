@@ -10,11 +10,20 @@ const { noBorder = false } = Astro.props;
 type Links = {
   text: string;
   href: string;
+  children?: Links[];
 };
 
 const LINKS: Links[] = [
   { text: "AUCPL", href: "https://aucpl.com" },
-  { text: "About", href: "/about" },
+  {
+    text: "About",
+    href: "/about",
+    children: [
+      { text: "AUCPL", href: "/about/aucpl" },
+      { text: "AllUni", href: "/about/alluni" },
+      { text: "Committee", href: "/about/committee" },
+    ],
+  },
   { text: "Events", href: "/events" },
   { text: "Resources", href: "/resources" },
   { text: "Sponsors", href: "/sponsors" },
@@ -22,8 +31,11 @@ const LINKS: Links[] = [
 ];
 ---
 
-<header id="header" class="text-xl">
-  <div class=`hidden xl:block ${noBorder ? "" : "border-b"} z-50`>
+<header id="header" class="text-xl relative" data-no-border={noBorder}>
+  <div
+    id="header-container"
+    class=`hidden xl:block ${noBorder ? "" : "border-b"} z-50 transition-colors duration-300`
+  >
     <div class="mx-auto max-w-7xl flex grow py-4">
       <a href="/">
         <img
@@ -35,16 +47,44 @@ const LINKS: Links[] = [
       <nav class="flex grow pl-6 place-content-end items-center">
         <ul class="flex gap-6" id="desktop-nav">
           {
-            LINKS.map((link) => (
-              <li>
-                <a class="nav-link" href={link.href}>
-                  {link.text}
+            LINKS.map((link, index) => (
+              <li class="nav-item" data-index={index}>
+                <a
+                  class="nav-link"
+                  href={link.href}
+                  data-has-dropdown={link.children && link.children.length > 0}
+                >
+                  <span class="nav-link-text">{link.text}</span>
+                  {link.children && link.children.length > 0 && (
+                    <svg
+                      class="dropdown-indicator inline-block ml-1 w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  )}
                 </a>
               </li>
             ))
           }
         </ul>
       </nav>
+    </div>
+  </div>
+
+  {/* Dropdown panel - full width below navbar */}
+  <div class="dropdown-panel" id="dropdown-panel">
+    <div class="mx-auto max-w-7xl pb-10">
+      <div class="dropdown-content" id="dropdown-content">
+        {/* Content will be dynamically populated */}
+      </div>
     </div>
   </div>
 
@@ -81,9 +121,41 @@ const LINKS: Links[] = [
       <nav class="pt-8">
         <ul class="flex flex-col gap-6 mb-auto">
           {
-            LINKS.map((link) => (
-              <li>
-                <a href={link.href}>{link.text}</a>
+            LINKS.map((link, index) => (
+              <li class="mobile-nav-item">
+                <div class="flex items-center justify-between">
+                  <a href={link.href}>{link.text}</a>
+                  {link.children && link.children.length > 0 && (
+                    <button
+                      class="mobile-dropdown-toggle p-2"
+                      data-mobile-index={index}
+                      aria-expanded="false"
+                    >
+                      <svg
+                        class="mobile-dropdown-icon w-4 h-4 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+                  )}
+                </div>
+                {link.children && link.children.length > 0 && (
+                  <ul class="mobile-dropdown-content" style="display:none;">
+                    {link.children.map((child) => (
+                      <li class="pl-4 pt-3">
+                        <a href={child.href}>{child.text}</a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))
           }
@@ -93,48 +165,129 @@ const LINKS: Links[] = [
   </div>
 </header>
 
-<style>
+<style is:global>
   /* Navigation link underline animation */
   .nav-link {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     transition: color 0.3s ease;
   }
 
-  .nav-link::after {
+  .nav-link-text {
+    position: relative;
+  }
+
+  .nav-link-text::after,
+  .dropdown-link::after {
     content: "";
     position: absolute;
-    bottom: -4px;
     left: 0;
-    width: 100%;
+    right: 0;
     height: 2px;
     background-color: currentColor;
     transform: scaleX(0);
+    transform-origin: center;
     transition: transform 0.2s ease;
   }
 
-  .nav-link:hover {
-    color: rgb(var(--color-primary));
+  .nav-link-text::after {
+    bottom: -4px;
   }
 
-  .nav-link:hover::after {
-    transform: scaleX(1);
+  .dropdown-link::after {
+    bottom: 4px;
+  }
+
+  .nav-link:hover .nav-link-text::after,
+  .dropdown-link:hover::after {
+    transform: scaleX(1) !important;
   }
 
   /* Animation from left */
-  .nav-link.from-left::after {
+  .from-left .nav-link-text::after,
+  .from-left::after {
     transform-origin: left;
   }
 
   /* Animation from right */
-  .nav-link.from-right::after {
+  .from-right .nav-link-text::after,
+  .from-right::after {
     transform-origin: right;
   }
 
-  /* Animation from center (default/bottom hover) */
-  .nav-link.from-center::after,
-  .nav-link::after {
+  /* Animation from center (default) */
+  .from-center .nav-link-text::after,
+  .from-center::after {
     transform-origin: center;
+  }
+
+  /* Dropdown panel styles */
+  .nav-item {
+    position: relative;
+  }
+
+  /* Header background when dropdown is active with noBorder */
+  #header-container.dropdown-bg-active {
+    background-color: var(--color-base);
+  }
+
+  .dropdown-panel {
+    position: absolute;
+    inset: 100% 0 auto;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+    z-index: 50;
+    background-color: var(--color-base);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dropdown-panel.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .dropdown-content {
+    padding: 1.5rem 0;
+    display: flex;
+    gap: 2rem;
+  }
+
+  .dropdown-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 1.2rem;
+    position: relative;
+  }
+
+  /* Mobile dropdown styles */
+  .mobile-dropdown-toggle {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .mobile-dropdown-content {
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .mobile-dropdown-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .mobile-dropdown-toggle[aria-expanded="true"] .mobile-dropdown-icon {
+    transform: rotate(180deg);
   }
 
   /* Mobile hamburger menu styles */
@@ -154,69 +307,192 @@ const LINKS: Links[] = [
   }
 </style>
 
-<script is:inline>
-  // Desktop navigation directional underline animation
-  (() => {
-    const desktopNav = document.getElementById("desktop-nav");
-    if (!desktopNav) return;
+<script is:inline define:vars={{ NAV_DATA: LINKS }}>
+  const DIRECTION_CLASSES = {
+    LEFT: "from-left",
+    RIGHT: "from-right",
+    CENTER: "from-center",
+  };
+  const HIDE_DELAY_MS = 100;
+  const NO_HOVER_INDEX = -1;
 
-    const navLinks = Array.from(desktopNav.querySelectorAll(".nav-link"));
-    let lastHoveredIndex = -1;
+  // Track if user has moved mouse to prevent dropdown activation on page load
+  let hasMouseMoved = false;
+  document.addEventListener(
+    "mousemove",
+    () => {
+      hasMouseMoved = true;
+    },
+    { once: true },
+  );
 
-    navLinks.forEach((link, index) => {
-      link.addEventListener("mouseenter", (e) => {
-        // Remove previous direction classes
-        link.classList.remove("from-left", "from-right", "from-center");
+  // Shared directional underline animation logic
+  function setupDirectionalAnimation(container, linkSelector, resetElement) {
+    if (!container) return;
 
-        if (lastHoveredIndex === -1) {
-          // Direct hover or from bottom - animate from center
-          link.classList.add("from-center");
-        } else if (index > lastHoveredIndex) {
-          // Moving left to right - animate from left
-          link.classList.add("from-left");
-        } else if (index < lastHoveredIndex) {
-          // Moving right to left - animate from right
-          link.classList.add("from-right");
-        } else {
-          // Same link - animate from center
-          link.classList.add("from-center");
-        }
+    const links = Array.from(container.querySelectorAll(linkSelector));
+    let lastHoveredIndex = NO_HOVER_INDEX;
 
+    links.forEach((link, index) => {
+      link.addEventListener("mouseenter", () => {
+        link.classList.remove(...Object.values(DIRECTION_CLASSES));
+
+        const direction =
+          lastHoveredIndex === NO_HOVER_INDEX || index === lastHoveredIndex
+            ? DIRECTION_CLASSES.CENTER
+            : index > lastHoveredIndex
+              ? DIRECTION_CLASSES.LEFT
+              : DIRECTION_CLASSES.RIGHT;
+
+        link.classList.add(direction);
         lastHoveredIndex = index;
       });
     });
 
-    // Reset when mouse leaves the nav entirely
-    if (desktopNav.parentElement) {
-      desktopNav.parentElement.addEventListener("mouseleave", () => {
-        lastHoveredIndex = -1;
+    resetElement?.addEventListener("mouseleave", () => {
+      lastHoveredIndex = NO_HOVER_INDEX;
+    });
+  }
+
+  // Desktop navigation directional underline animation
+  (() => {
+    const desktopNav = document.getElementById("desktop-nav");
+    setupDirectionalAnimation(
+      desktopNav,
+      ".nav-link",
+      desktopNav?.parentElement,
+    );
+  })();
+
+  // Dropdown panel functionality
+  (() => {
+    const dropdownPanel = document.getElementById("dropdown-panel");
+    const dropdownContent = document.getElementById("dropdown-content");
+    const navLinks = document.querySelectorAll(".nav-link");
+    const header = document.getElementById("header");
+    const headerContainer = document.getElementById("header-container");
+
+    if (!dropdownPanel || !dropdownContent) return;
+
+    const hasNoBorder = header?.getAttribute("data-no-border") === "true";
+
+    const toggleDropdownBackground = (isActive) => {
+      if (hasNoBorder && headerContainer) {
+        headerContainer.classList.toggle("dropdown-bg-active", isActive);
+      }
+    };
+
+    const hideDropdown = () => {
+      dropdownPanel.classList.remove("active");
+      toggleDropdownBackground(false);
+    };
+
+    const showDropdown = (navItem) => {
+      if (!navItem?.children) return;
+
+      dropdownContent.innerHTML = navItem.children
+        .map(
+          (child) =>
+            `<a class="dropdown-link" href="${child.href}">${child.text}</a>`,
+        )
+        .join("");
+
+      dropdownPanel.classList.add("active");
+      toggleDropdownBackground(true);
+
+      // Setup directional animation for new dropdown links after DOM update
+      setTimeout(() => {
+        setupDirectionalAnimation(
+          dropdownPanel,
+          ".dropdown-link",
+          dropdownPanel,
+        );
+      }, 0);
+    };
+
+    navLinks.forEach((link, index) => {
+      const hasDropdown = link.getAttribute("data-has-dropdown") === "true";
+
+      link.addEventListener("mouseenter", () => {
+        if (hasDropdown && hasMouseMoved) {
+          showDropdown(NAV_DATA[index]);
+        } else if (dropdownPanel.classList.contains("active")) {
+          hideDropdown();
+        }
       });
-    }
+    });
+
+    // Hide dropdown when mouse leaves both the nav and dropdown panel
+    let isOverNav = false;
+    let isOverDropdown = false;
+
+    const checkAndHide = () => {
+      if (!isOverNav && !isOverDropdown) {
+        hideDropdown();
+      }
+    };
+
+    header?.addEventListener("mouseenter", () => {
+      isOverNav = true;
+    });
+
+    header?.addEventListener("mouseleave", () => {
+      isOverNav = false;
+      setTimeout(checkAndHide, HIDE_DELAY_MS);
+    });
+
+    dropdownPanel.addEventListener("mouseenter", () => {
+      isOverDropdown = true;
+    });
+
+    dropdownPanel.addEventListener("mouseleave", () => {
+      isOverDropdown = false;
+      setTimeout(checkAndHide, HIDE_DELAY_MS);
+    });
+  })();
+
+  // Mobile dropdown functionality
+  (() => {
+    const mobileToggles = document.querySelectorAll(".mobile-dropdown-toggle");
+
+    mobileToggles.forEach((toggle) => {
+      toggle.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+        const dropdown = toggle
+          .closest(".mobile-nav-item")
+          ?.querySelector(".mobile-dropdown-content");
+
+        if (!dropdown) return;
+
+        toggle.setAttribute("aria-expanded", String(!isExpanded));
+        dropdown.style.display = isExpanded ? "none" : "block";
+      });
+    });
   })();
 
   // Mobile menu toggle
-  let menuOpen = false;
-  const mobileHeader = document.getElementById("mobile-header");
-  const menuButton = document.getElementById("hamburger-menu");
-  const menu = document.getElementById("nav-menu");
-  const header = document.getElementById("header");
-  const root = document.getElementById("root");
+  (() => {
+    const mobileHeader = document.getElementById("mobile-header");
+    const menuButton = document.getElementById("hamburger-menu");
+    const menu = document.getElementById("nav-menu");
+    const header = document.getElementById("header");
+    const root = document.getElementById("root");
 
-  menuButton.addEventListener("click", () => {
-    if (menuOpen) {
-      mobileHeader.classList.remove("bg-base");
-      header.classList.remove("open");
-      menu.style.display = "none";
-      root.style.overflowY = "visible";
-      menuButton.setAttribute("aria-expanded", "false");
-      menuOpen = false;
-    } else {
-      mobileHeader.classList.add("bg-base");
-      header.classList.add("open");
-      menu.style.display = "block";
-      root.style.overflowY = "hidden";
-      menuButton.setAttribute("aria-expanded", "true");
-      menuOpen = true;
-    }
-  });
+    let menuOpen = false;
+
+    const toggleMenu = () => {
+      menuOpen = !menuOpen;
+
+      mobileHeader.classList.toggle("bg-base", menuOpen);
+      header.classList.toggle("open", menuOpen);
+      menu.style.display = menuOpen ? "block" : "none";
+      root.style.overflowY = menuOpen ? "hidden" : "visible";
+      menuButton.setAttribute("aria-expanded", String(menuOpen));
+    };
+
+    menuButton.addEventListener("click", toggleMenu);
+  })();
 </script>
