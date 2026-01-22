@@ -10,7 +10,13 @@ import { CONTACT_EMAIL, JOIN_LINK } from "@/data/links";
 ---
 
 <Layout title="The Home of Competitive Programming in South Australia | ACPC">
-  <div id="home-hero" class="">
+  <link
+    rel="preload"
+    as="image"
+    href="/images/rsp-seminar.webp"
+    fetchpriority="high"
+  />
+  <div id="home-hero">
     <Header noBorder={true} />
     <div class={mainTagCss}>
       <section class="py-8 lg:py-16 h-[80vh]">
