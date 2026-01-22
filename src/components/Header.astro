@@ -58,16 +58,15 @@ const LINKS: Links[] = [
             class="h-10 mr-4 inline-block"
           />
         </a>
-        <button>
-          <div
-            id="hamburger-menu"
-            class="grid place-content-center h-fit self-center"
-            aria-label="Toggle navigation"
-          >
-            <div class="header-bar bg-white w-[30px] h-0.5 my-1"></div>
-            <div class="header-bar bg-white w-[30px] h-0.5 my-1"></div>
-            <div class="header-bar bg-white w-[30px] h-0.5 my-1"></div>
-          </div>
+        <button
+          id="hamburger-menu"
+          aria-label="Toggle navigation"
+          aria-expanded="false"
+          class="grid place-content-center h-fit self-center"
+        >
+          <div class="header-bar bg-white w-[30px] h-0.5 my-1"></div>
+          <div class="header-bar bg-white w-[30px] h-0.5 my-1"></div>
+          <div class="header-bar bg-white w-[30px] h-0.5 my-1"></div>
         </button>
       </div>
     </div>
@@ -112,23 +111,25 @@ const LINKS: Links[] = [
 <script is:inline>
   let menuOpen = false;
   const mobileHeader = document.getElementById("mobile-header");
-  const menuIcon = document.getElementById("hamburger-menu");
+  const menuButton = document.getElementById("hamburger-menu");
   const menu = document.getElementById("nav-menu");
   const header = document.getElementById("header");
   const root = document.getElementById("root");
 
-  menuIcon.addEventListener("click", () => {
+  menuButton.addEventListener("click", () => {
     if (menuOpen) {
       mobileHeader.classList.remove("bg-base");
       header.classList.remove("open");
       menu.style.display = "none";
       root.style.overflowY = "visible";
+      menuButton.setAttribute("aria-expanded", "false");
       menuOpen = false;
     } else {
       mobileHeader.classList.add("bg-base");
       header.classList.add("open");
       menu.style.display = "block";
       root.style.overflowY = "hidden";
+      menuButton.setAttribute("aria-expanded", "true");
       menuOpen = true;
     }
   });
