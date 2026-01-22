@@ -1,5 +1,11 @@
 ---
-import { siDiscord, siInstagram, siFacebook, siGithub } from "simple-icons";
+import {
+  siDiscord,
+  siInstagram,
+  siFacebook,
+  siGithub,
+  siYoutube,
+} from "simple-icons";
 import type SimpleIcon from "simple-icons";
 
 import Linkedin from "@/assets/linkedin.svg";
@@ -10,6 +16,7 @@ import {
   GITHUB_LINK,
   INSTAGRAM_LINK,
   LINKEDIN_LINK,
+  YOUTUBE_LINK,
 } from "@/data/links.ts";
 
 type FooterLinks = {
@@ -30,6 +37,7 @@ const FOOTER_LINKS: FooterLinks[] = [
     href: FACEBOOK_LINK,
     icon: siFacebook,
   },
+  { text: "Youtube", href: YOUTUBE_LINK, icon: siYoutube },
   { text: "GitHub", href: GITHUB_LINK, icon: siGithub },
   {
     text: "LinkedIn",
