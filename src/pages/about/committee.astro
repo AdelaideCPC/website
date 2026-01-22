@@ -1,12 +1,58 @@
 ---
 import Main from "@/layouts/Main.astro";
+
+type Position = {
+  title: string;
+  people: string; // Comma-separated
+};
+
+const EXECUTIVES: Position[] = [
+  { title: "President", people: "Maged Gayed" },
+  { title: "Vice President", people: "Jonathan Sawers" },
+  { title: "Secretary", people: "Brooke Bui" },
+  { title: "Treasurer", people: "Shaun Phillips" },
+  { title: "Competitions Director", people: "Patrick Thompson" },
+];
+
+const MANAGERS: Position[] = [
+  { title: "Sponsorships Manager", people: "Saadan Navqi" },
+  { title: "Events Manager", people: "Rory Peterson" },
+  { title: "Marketing Manager", people: "Jamie Mathieson" },
+];
 ---
 
 <Main title="About Our Committee | ACPC">
   <div class="py-8 lg:py-16">
-    <h1 class="text-4xl lg:text-6xl font-bold font-heading">Committee</h1>
-    <section class="py-8">
-      <p class="text-lg lg:text-xl">Coming soon...</p>
+    <h1 class="text-4xl lg:text-6xl font-bold font-heading mb-16">
+      2026 Committee
+    </h1>
+    <section class="mb-8">
+      <h2 class="text-2xl lg:text-4xl">Executive Committee</h2>
+      <div class="py-4">
+        <ul class="list-disc list-inside text-lg lg:text-xl">
+          {
+            EXECUTIVES.map((position) => (
+              <li>
+                <b>{position.title}:</b> {position.people}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+    <section class="pb-8">
+      <h2 class="text-2xl lg:text-4xl">Managers</h2>
+      <div class="py-4">
+        <ul class="list-disc list-inside text-lg lg:text-xl">
+          {
+            MANAGERS.map((position) => (
+              <li>
+                <b>{position.title}:</b> {position.people}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </section>
   </div>
 </Main>

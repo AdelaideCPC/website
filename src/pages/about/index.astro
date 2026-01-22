@@ -1,19 +1,7 @@
 ---
 import { DISCORD_LINK, INSTAGRAM_LINK } from "@/data/links";
 import Main from "@/layouts/Main.astro";
-
-type Position = {
-  title: string;
-  people: string; // Comma-separated
-};
-
-const EXECUTIVES: Position[] = [
-  { title: "President", people: "Maged Gayed" },
-  { title: "Vice President", people: "Jonathan Sawers" },
-  { title: "Secretary", people: "Brooke Bui" },
-  { title: "Treasurer", people: "Shaun Phillips" },
-  { title: "Competitions Director", people: "Patrick Thompson" },
-];
+import Button from "@/components/Button.astro";
 ---
 
 <Main title="About | ACPC">
@@ -84,19 +72,12 @@ const EXECUTIVES: Position[] = [
         </p>
       </div>
     </section>
-
-    <section>
-      <h2 class="text-2xl lg:text-4xl">Executives for 2026</h2>
-      <div class="py-4">
-        <ul class="list-disc list-inside text-lg lg:text-xl">
-          {
-            EXECUTIVES.map((position) =>
-              //prettier-ignore
-              <li><b>{position.title}:</b> {position.people}</li>,
-            )
-          }
-        </ul>
-      </div>
-    </section>
   </div>
+
+  <section class="mb-32">
+    <h2 class="text-2xl lg:text-4xl mb-4">The Committee</h2>
+    <div class="mt-10">
+      <Button href="/about/committee" text="About the Committee" />
+    </div>
+  </section>
 </Main>
