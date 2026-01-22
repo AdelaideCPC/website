@@ -1,4 +1,5 @@
 ---
+import { DISCORD_LINK, INSTAGRAM_LINK } from "@/data/links";
 import Main from "../layouts/Main.astro";
 
 type Position = {
@@ -41,8 +42,12 @@ const EXECUTIVES: Position[] = [
         </p>
 
         <p class="pb-4 text-lg lg:text-xl">
-          You can check out our Instagram page and our Discord server to keep up
-          to date with the latest events!
+          You can check out our <a
+            class="text-primary-light"
+            href={INSTAGRAM_LINK}>Instagram page</a
+          > and our <a class="text-primary-light" href={DISCORD_LINK}
+            >Discord server</a
+          > to keep up to date with the latest events!
         </p>
       </div>
     </section>

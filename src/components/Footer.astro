@@ -4,6 +4,14 @@ import type SimpleIcon from "simple-icons";
 
 import Linkedin from "@/assets/linkedin.svg";
 
+import {
+  DISCORD_LINK,
+  FACEBOOK_LINK,
+  GITHUB_LINK,
+  INSTAGRAM_LINK,
+  LINKEDIN_LINK,
+} from "@/data/links.ts";
+
 type FooterLinks = {
   text: string;
   href: string;
@@ -11,21 +19,21 @@ type FooterLinks = {
 };
 
 const FOOTER_LINKS: FooterLinks[] = [
-  { text: "Discord", href: "https://discord.gg/9yBJs68Sj4", icon: siDiscord },
+  { text: "Discord", href: DISCORD_LINK, icon: siDiscord },
   {
     text: "Instagram",
-    href: "https://www.instagram.com/adelaidecpc",
+    href: INSTAGRAM_LINK,
     icon: siInstagram,
   },
   {
     text: "Facebook",
-    href: "https://www.facebook.com/groups/uoacpc",
+    href: FACEBOOK_LINK,
     icon: siFacebook,
   },
-  { text: "GitHub", href: "https://github.com/AdelaideCPC/", icon: siGithub },
+  { text: "GitHub", href: GITHUB_LINK, icon: siGithub },
   {
     text: "LinkedIn",
-    href: "https://www.linkedin.com/company/competitive-programming-club-of-the-university-of-adelaide",
+    href: LINKEDIN_LINK,
     icon: Linkedin,
   },
 ];

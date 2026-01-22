@@ -6,7 +6,12 @@ import Layout from "@/layouts/Layout.astro";
 
 import Button from "@/components/Button.astro";
 
-import { CONTACT_EMAIL, JOIN_LINK } from "@/data/links";
+import {
+  CONTACT_EMAIL,
+  DISCORD_LINK,
+  INSTAGRAM_LINK,
+  JOIN_LINK,
+} from "@/data/links";
 ---
 
 <Layout title="The Home of Competitive Programming in South Australia | ACPC">
@@ -123,11 +128,15 @@ import { CONTACT_EMAIL, JOIN_LINK } from "@/data/links";
         programming in general, feel free to reach out!
       </p>
       <p class="pb-4">
-        For all official enquiries please email us at <a
+        For all official enquiries, please email us at <a
           href={`mailto:${CONTACT_EMAIL}`}
           class="underline text-primary-light">{CONTACT_EMAIL}</a
-        >. If you just want to get in touch, you can do so via Instagram or our
-        Discord server.
+        >. If you just want to get in touch, you can do so via <a
+          class="text-primary-light"
+          href={INSTAGRAM_LINK}>Instagram</a
+        > or our <a class="text-primary-light" href={DISCORD_LINK}
+          >Discord server</a
+        >.
       </p>
     </section>
   </main>
