@@ -31,11 +31,10 @@ const MANAGERS: Position[] = [
       <div class="py-4">
         <ul class="list-disc list-inside text-lg lg:text-xl">
           {
-            EXECUTIVES.map((position) => (
-              <li>
-                <b>{position.title}:</b> {position.people}
-              </li>
-            ))
+            EXECUTIVES.map((position) =>
+              //prettier-ignore
+              <li><b>{position.title}:</b> {position.people}</li>,
+            )
           }
         </ul>
       </div>
@@ -45,11 +44,10 @@ const MANAGERS: Position[] = [
       <div class="py-4">
         <ul class="list-disc list-inside text-lg lg:text-xl">
           {
-            MANAGERS.map((position) => (
-              <li>
-                <b>{position.title}:</b> {position.people}
-              </li>
-            ))
+            MANAGERS.map((position) =>
+              //prettier-ignore
+              <li><b>{position.title}:</b> {position.people}</li>,
+            )
           }
         </ul>
       </div>

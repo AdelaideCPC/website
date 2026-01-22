@@ -1,12 +1,130 @@
 ---
 import Main from "@/layouts/Main.astro";
+
+type ResourceLink = {
+  name: string;
+  url: string;
+};
+
+const CONTEST_SITES: ResourceLink[] = [
+  { name: "AUCPL", url: "https://aucpl.com" },
+  { name: "Codeforces", url: "https://codeforces.com" },
+  { name: "AtCoder", url: "https://atcoder.jp" },
+  { name: "LeetCode", url: "https://leetcode.com" },
+  { name: "CSES Problem Set", url: "https://cses.fi/problemset" },
+  { name: "Kattis", url: "https://open.kattis.com" },
+  { name: "UVa Online Judge", url: "https://onlinejudge.org" },
+];
+
+const CONTEST_RESOURCES: ResourceLink[] = [
+  {
+    name: "KACTL",
+    url: "https://github.com/kth-competitive-programming/kactl",
+  },
+  {
+    name: "AtCoder Library",
+    url: "https://github.com/atcoder/ac-library",
+  },
+  {
+    name: "CLIST",
+    url: "https://clist.by",
+  },
+];
+
+const LEARN_RESOURCES: ResourceLink[] = [
+  {
+    name: "Competitive Programmer's Handbook (Laaksonen)",
+    url: "https://cses.fi/book/book.pdf",
+  },
+  {
+    name: "CP-Algorithms",
+    url: "https://cp-algorithms.com",
+  },
+  {
+    name: "USACO Guide",
+    url: "https://usaco.guide",
+  },
+];
+
+const ICPC_LINKS: ResourceLink[] = [
+  {
+    name: "ICPC Official Website",
+    url: "https://icpc.global",
+  },
+  {
+    name: "ICPC Archives",
+    url: "https://icpcarchive.github.io",
+  },
+  {
+    name: "South Pacific Competitive Programming Association (SPCPA)",
+    url: "https://sppcontests.org",
+  },
+];
 ---
 
 <Main title="Resources | ACPC">
   <div class="py-8 lg:py-16">
-    <h1 class="text-4xl lg:text-6xl font-bold font-heading">Resources</h1>
-    <section class="py-8">
-      <p class="text-lg lg:text-xl">Coming soon...</p>
+    <h1 class="text-4xl lg:text-6xl font-bold font-heading mb-16">Resources</h1>
+    <section class="mb-8">
+      <p class="text-xl">
+        A non-exhaustive list of resources for competitive programming.
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl lg:text-4xl">Contest Sites</h2>
+      <div class="py-4">
+        <ul class="list-disc list-inside text-lg lg:text-xl">
+          {
+            CONTEST_SITES.map((site) =>
+              //prettier-ignore
+              <li><a class="underline" href={site.url}>{site.name}</a></li>,
+            )
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl lg:text-4xl">Contest Resources</h2>
+      <div class="py-4">
+        <ul class="list-disc list-inside text-lg lg:text-xl">
+          {
+            CONTEST_RESOURCES.map((site) =>
+              //prettier-ignore
+              <li><a class="underline" href={site.url}>{site.name}</a></li>,
+            )
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl lg:text-4xl">Learn</h2>
+      <div class="py-4">
+        <ul class="list-disc list-inside text-lg lg:text-xl">
+          {
+            LEARN_RESOURCES.map((site) =>
+              //prettier-ignore
+              <li><a class="underline" href={site.url}>{site.name}</a></li>,
+            )
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl lg:text-4xl">ICPC</h2>
+      <div class="py-4">
+        <ul class="list-disc list-inside text-lg lg:text-xl">
+          {
+            ICPC_LINKS.map((site) =>
+              //prettier-ignore
+              <li><a class="underline" href={site.url}>{site.name}</a></li>,
+            )
+          }
+        </ul>
+      </div>
     </section>
   </div>
 </Main>
