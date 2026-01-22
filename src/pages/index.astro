@@ -36,7 +36,7 @@ import {
         <div class="py-4 2xl:py-10"></div>
         <div class="flex flex-wrap gap-4">
           <Button text="Join ACPC" href={JOIN_LINK} />
-          <Button variant="empty" href="/about" text="About Us" />
+          <Button variant="outline" href="/about" text="About Us" />
         </div>
       </section>
     </div>
@@ -46,7 +46,7 @@ import {
       <h2 class="font-bold font-heading text-4xl lg:text-6xl 2xl:text-7xl mb-4">
         AUCPL 2026
       </h2>
-      <div class="text-lg xl:text-xl text-right py-4">
+      <div class="text-lg xl:text-xl lg:text-right py-4">
         <p class="mb-4">
           The Adelaide University Competitive Programming League is back for
           2026!
@@ -58,30 +58,30 @@ import {
       </div>
       <div class="grid grid-rows-2 py-8">
         <div class="grid grid-cols-1 lg:grid-cols-4 mb-8">
+          <div class="pr-6 text-right">
+            <h3 class="font-heading text-5xl">DIVISION A</h3>
+          </div>
           <div class="col-span-1 lg:col-span-3 bg-accent p-8">
             For seasoned competitive programmers and those looking for a
             challenge. Come along for a challenge, for prizes, and to prepare
             for ICPC!
           </div>
-          <div class="pl-6">
-            <h3 class="font-heading text-5xl">DIVISION A</h3>
-          </div>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-4 py-2">
-          <div class="pr-6 text-right">
-            <h3 class="font-heading text-5xl">DIVISION B</h3>
-          </div>
           <div class="col-span-1 lg:col-span-3 bg-accent p-8">
             For those who are new to competitive programming. You'll learn the
             fundamentals of data structures and algorithms, and learn how to
             become a competitive programmer.
+          </div>
+          <div class="pl-6">
+            <h3 class="font-heading text-5xl">DIVISION B</h3>
           </div>
         </div>
       </div>
       <div class="my-8 flex flex-wrap gap-4">
         <Button text="About AUCPL" href="/about/aucpl" />
         <Button
-          variant="empty"
+          variant="outline"
           text="Visit AUCPL.com"
           href="https://aucpl.com"
         />
@@ -93,7 +93,7 @@ import {
       </h2>
       <div class="grid grid-cols-1 lg:grid-cols-3 place-items-end">
         <div></div>
-        <div class="lg:col-span-2 text-lg xl:text-xl text-right py-4 pb-16">
+        <div class="lg:col-span-2 text-lg xl:text-xl lg:text-right py-4 pb-16">
           <p>
             AllUni is an annual inter-university programming contest bringing
             together the brightest minds across Australia and New Zealand.
