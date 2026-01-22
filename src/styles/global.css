@@ -9,6 +9,12 @@
 }
 
 @font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/SpaceGrotesk-VariableFont_wght.woff2");
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Atkinson Hyperlegible Next";
   src: url("/fonts/AtkinsonHyperlegibleNext-VariableFont_wght.woff2");
   font-display: swap;
@@ -29,4 +35,5 @@
   --color-base: #151517;
 
   --font-sans: "Atkinson Hyperlegible Next", "ui-sans-serif", "sans-serif";
+  --font-heading: "Space Grotesk", "ui-sans-serif", "sans-serif";
 }
