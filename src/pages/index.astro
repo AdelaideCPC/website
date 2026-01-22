@@ -6,10 +6,7 @@ import Layout from "@/layouts/Layout.astro";
 
 import Button from "@/components/Button.astro";
 
-const EMAIL = "acpc@clubs.youx.org.au";
-const JOIN_LINK = "https://forms.gle/KNQsRjctczBmYrg86";
-const FACEBOOK_LINK = "https://www.facebook.com/groups/uoacpc";
-const DISCORD_LINK = "https://discord.gg/9yBJs68Sj4";
+import { CONTACT_EMAIL, JOIN_LINK } from "@/data/links";
 ---
 
 <Layout title="The Home of Competitive Programming in South Australia | ACPC">
@@ -115,8 +112,8 @@ const DISCORD_LINK = "https://discord.gg/9yBJs68Sj4";
       </p>
       <p class="pb-4">
         For all official enquiries please email us at <a
-          href={`mailto:${EMAIL}`}
-          class="underline text-primary">{EMAIL}</a
+          href={`mailto:${CONTACT_EMAIL}`}
+          class="underline text-primary">{CONTACT_EMAIL}</a
         >. If you just want to get in touch, you can do so via Instagram or our
         Discord server.
       </p>

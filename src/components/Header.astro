@@ -1,4 +1,6 @@
 ---
+import { JOIN_LINK } from "@/data/links";
+
 interface Props {
   noBorder?: boolean;
 }
@@ -10,15 +12,13 @@ type Links = {
   href: string;
 };
 
-const JOIN_FORM = "https://forms.gle/KNQsRjctczBmYrg86";
-
 const LINKS: Links[] = [
   { text: "AUCPL", href: "https://aucpl.com" },
   { text: "About", href: "/about" },
   { text: "Events", href: "/events" },
   { text: "Resources", href: "/resources" },
   { text: "Sponsors", href: "/sponsors" },
-  { text: "Join", href: JOIN_FORM },
+  { text: "Join", href: JOIN_LINK },
 ];
 ---
 
