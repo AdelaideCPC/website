@@ -24,7 +24,7 @@ const variantStyles = {
     hover:bg-white hover:text-primary hover:border-white
   `,
   outline: `
-    bg-transparent text-primary border-primary
+    bg-transparent text-primary-light border-primary-light
     hover:bg-primary hover:text-white hover:border-primary
   `,
 };
@@ -34,11 +34,18 @@ const combinedStyles = `${baseStyles} ${variantStyles[variant]}`;
 
 {
   hasLink ? (
-    <a href={href} class={combinedStyles} aria-label={ariaLabel || text}>
+    <a
+      href={href}
+      class={combinedStyles}
+      {...(ariaLabel && { "aria-label": ariaLabel })}
+    >
       {text}
     </a>
   ) : (
-    <button class={combinedStyles} aria-label={ariaLabel || text}>
+    <button
+      class={combinedStyles}
+      {...(ariaLabel && { "aria-label": ariaLabel })}
+    >
       {text}
     </button>
   )
