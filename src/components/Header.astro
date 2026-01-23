@@ -47,29 +47,34 @@ const LINKS: Links[] = [
         <ul class="flex gap-6" id="desktop-nav">
           {
             LINKS.map((link, index) => (
-              <li class="nav-item" data-index={index}>
-                <a
-                  class="nav-link"
-                  href={link.href}
-                  data-has-dropdown={link.children && link.children.length > 0}
-                >
-                  <span class="nav-link-text">{link.text}</span>
+              <li class="nav-item">
+                <div class="nav-link-container">
+                  <a class="nav-link" href={link.href}>
+                    <span class="nav-link-text">{link.text}</span>
+                  </a>
                   {link.children && link.children.length > 0 && (
-                    <svg
-                      class="dropdown-indicator inline-block ml-1 w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+                    <button
+                      class="dropdown-toggle"
+                      aria-expanded="false"
+                      aria-label={`Toggle ${link.text} submenu`}
+                      data-dropdown-index={index}
                     >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
+                      <svg
+                        class="dropdown-indicator inline-block w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
                   )}
-                </a>
+                </div>
               </li>
             ))
           }
@@ -167,11 +172,39 @@ const LINKS: Links[] = [
 
 <style is:global>
   /* Navigation link underline animation */
+  .nav-link-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
   .nav-link {
     position: relative;
     display: inline-flex;
     align-items: center;
     transition: color 0.3s ease;
+  }
+
+  .dropdown-toggle {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 0.25rem;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.3s ease;
+  }
+
+  .dropdown-toggle:hover,
+  .dropdown-toggle:focus {
+    opacity: 0.8;
+  }
+
+  .dropdown-toggle:focus {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 
   .nav-link-text {
@@ -369,12 +402,14 @@ const LINKS: Links[] = [
     const dropdownPanel = document.getElementById("dropdown-panel");
     const dropdownContent = document.getElementById("dropdown-content");
     const navLinks = document.querySelectorAll(".nav-link");
+    const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
     const header = document.getElementById("header");
     const headerContainer = document.getElementById("header-container");
 
     if (!dropdownPanel || !dropdownContent) return;
 
     const hasNoBorder = header?.getAttribute("data-no-border") === "true";
+    let currentActiveIndex = NO_HOVER_INDEX;
 
     const toggleDropdownBackground = (isActive) => {
       if (hasNoBorder && headerContainer) {
@@ -385,20 +420,39 @@ const LINKS: Links[] = [
     const hideDropdown = () => {
       dropdownPanel.classList.remove("active");
       toggleDropdownBackground(false);
+      currentActiveIndex = NO_HOVER_INDEX;
+
+      // Reset all toggle buttons
+      dropdownToggles.forEach((toggle) => {
+        toggle.setAttribute("aria-expanded", "false");
+      });
+
+      // Remove dropdown links from tab order
+      const dropdownLinks = dropdownContent.querySelectorAll(".dropdown-link");
+      dropdownLinks.forEach((link) => {
+        link.setAttribute("tabindex", "-1");
+      });
     };
 
-    const showDropdown = (navItem) => {
+    const showDropdown = (index) => {
+      const navItem = NAV_DATA[index];
       if (!navItem?.children) return;
 
       dropdownContent.innerHTML = navItem.children
         .map(
           (child) =>
-            `<a class="dropdown-link" href="${child.href}">${child.text}</a>`,
+            `<a class="dropdown-link" href="${child.href}" tabindex="-1">${child.text}</a>`,
         )
         .join("");
 
       dropdownPanel.classList.add("active");
       toggleDropdownBackground(true);
+      currentActiveIndex = index;
+
+      // Update aria-expanded for the active toggle
+      dropdownToggles.forEach((toggle, idx) => {
+        toggle.setAttribute("aria-expanded", idx === index ? "true" : "false");
+      });
 
       // Setup directional animation for new dropdown links after DOM update
       setTimeout(() => {
@@ -407,16 +461,105 @@ const LINKS: Links[] = [
           ".dropdown-link",
           dropdownPanel,
         );
+
+        // Add dropdown links to tab order and setup keyboard navigation
+        const dropdownLinks =
+          dropdownContent.querySelectorAll(".dropdown-link");
+        dropdownLinks.forEach((link, idx) => {
+          link.setAttribute("tabindex", "0");
+
+          // Handle Tab from last child item to go back to main nav
+          if (idx === dropdownLinks.length - 1) {
+            link.addEventListener("keydown", (e) => {
+              if (e.key === "Tab" && !e.shiftKey) {
+                e.preventDefault();
+                hideDropdown();
+                // Find the next nav item after the current dropdown
+                const allNavItems = Array.from(
+                  document.querySelectorAll(
+                    "#desktop-nav .nav-link, #desktop-nav .dropdown-toggle",
+                  ),
+                );
+                const currentToggle = document.querySelector(
+                  `.dropdown-toggle[data-dropdown-index="${currentActiveIndex}"]`,
+                );
+                const currentIndex = allNavItems.indexOf(currentToggle);
+                const nextItem = allNavItems[currentIndex + 1];
+                if (nextItem) {
+                  nextItem.focus();
+                }
+              }
+            });
+          }
+
+          // Handle Shift+Tab from first child item to go back to toggle
+          if (idx === 0) {
+            link.addEventListener("keydown", (e) => {
+              if (e.key === "Tab" && e.shiftKey) {
+                e.preventDefault();
+                const currentToggle = document.querySelector(
+                  `.dropdown-toggle[data-dropdown-index="${currentActiveIndex}"]`,
+                );
+                currentToggle?.focus();
+              }
+            });
+          }
+        });
       }, 0);
     };
 
-    navLinks.forEach((link, index) => {
-      const hasDropdown = link.getAttribute("data-has-dropdown") === "true";
+    // Handle dropdown toggle button interactions
+    dropdownToggles.forEach((toggle) => {
+      const toggleDropdown = () => {
+        const index = parseInt(toggle.getAttribute("data-dropdown-index"));
+        if (currentActiveIndex === index) {
+          hideDropdown();
+        } else {
+          showDropdown(index);
+        }
+      };
 
+      toggle.addEventListener("click", (e) => {
+        e.preventDefault();
+        toggleDropdown();
+      });
+
+      toggle.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleDropdown();
+        } else if (e.key === "Tab" && !e.shiftKey) {
+          const index = parseInt(toggle.getAttribute("data-dropdown-index"));
+          if (
+            currentActiveIndex === index &&
+            dropdownPanel.classList.contains("active")
+          ) {
+            const firstDropdownLink =
+              dropdownContent.querySelector(".dropdown-link");
+            if (firstDropdownLink) {
+              e.preventDefault();
+              firstDropdownLink.focus();
+            }
+          }
+        }
+      });
+
+      // Handle hover on toggle button
+      toggle.addEventListener("mouseenter", () => {
+        if (hasMouseMoved) {
+          const index = parseInt(toggle.getAttribute("data-dropdown-index"));
+          showDropdown(index);
+        }
+      });
+    });
+
+    // Handle hover on nav links (hide dropdown when hovering non-dropdown links)
+    navLinks.forEach((link) => {
       link.addEventListener("mouseenter", () => {
-        if (hasDropdown && hasMouseMoved) {
-          showDropdown(NAV_DATA[index]);
-        } else if (dropdownPanel.classList.contains("active")) {
+        if (
+          !link.nextElementSibling?.classList.contains("dropdown-toggle") &&
+          dropdownPanel.classList.contains("active")
+        ) {
           hideDropdown();
         }
       });
@@ -448,6 +591,19 @@ const LINKS: Links[] = [
     dropdownPanel.addEventListener("mouseleave", () => {
       isOverDropdown = false;
       setTimeout(checkAndHide, HIDE_DELAY_MS);
+    });
+
+    // Handle Escape key to close dropdown
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && dropdownPanel.classList.contains("active")) {
+        const toggleIndex = currentActiveIndex;
+        hideDropdown();
+        document
+          .querySelector(
+            `.dropdown-toggle[data-dropdown-index="${toggleIndex}"]`,
+          )
+          ?.focus();
+      }
     });
   })();
 
