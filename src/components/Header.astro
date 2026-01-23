@@ -553,13 +553,18 @@ const LINKS: Links[] = [
       });
     });
 
-    // Handle hover on nav links (hide dropdown when hovering non-dropdown links)
+    // Handle hover on nav links
     navLinks.forEach((link) => {
+      const dropdownToggle = link.nextElementSibling;
+      const hasDropdown = dropdownToggle?.classList.contains("dropdown-toggle");
+
       link.addEventListener("mouseenter", () => {
-        if (
-          !link.nextElementSibling?.classList.contains("dropdown-toggle") &&
-          dropdownPanel.classList.contains("active")
-        ) {
+        if (hasDropdown && hasMouseMoved) {
+          const index = parseInt(
+            dropdownToggle.getAttribute("data-dropdown-index"),
+          );
+          showDropdown(index);
+        } else if (!hasDropdown && dropdownPanel.classList.contains("active")) {
           hideDropdown();
         }
       });
