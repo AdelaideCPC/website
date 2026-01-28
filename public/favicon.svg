@@ -1,10 +1,3 @@
-<svg style="clip-rule:evenodd;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2" version="1.1" viewBox="0 0 1e3 1e3" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
-    <g transform="translate(-1739 -3370.7)">
-        <g transform="matrix(1.3514 0 0 1.3514 739 1830.1)">
-            <rect x="740" y="1140" width="740" height="740" style="fill:none"/>
-            <g transform="matrix(22.966 0 0 22.966 -11187 -10558)">
-                <path d="m535.47 540c-8.003 0-14.5-5.5-14.5-14.5s6.497-14.5 14.5-14.5c8.002 0 14.5 5.501 14.5 14.5s-6.498 14.5-14.5 14.5z" style="fill:#cc001a"/>
-            </g>
-        </g>
-    </g>
+<svg style="clip-rule:evenodd;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2" version="1.1" viewBox="0 0 4134 4134" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+    <path d="m2066.9 4110.2c-1127.7 0-2043.3-775.02-2043.3-2043.3s915.58-2043.3 2043.3-2043.3 2043.3 775.13 2043.3 2043.3-915.58 2043.3-2043.3 2043.3z" style="fill:#cc001a"/>
 </svg>
