@@ -2,7 +2,9 @@
 import SponsorCard from "../components/SponsorCard.astro";
 import Main from "../layouts/Main.astro";
 
+import AtlassianLogo from "../assets/sponsors/atlassian.svg";
 import CitSecLogo from "../assets/sponsors/citadel-securities.png";
+import HRTLogo from "../assets/sponsors/hrt.svg";
 import IMCLogo from "../assets/sponsors/imc.svg";
 import JaneStreetLogo from "../assets/sponsors/jane-street.png";
 import SigLogo from "../assets/sponsors/sig.png";
@@ -11,7 +13,7 @@ import OptiverLogo from "../assets/sponsors/optiver.png";
 
 <Main title="Sponsors | ACPC">
   <div class="py-8 lg:py-16">
-    <h1 class="text-4xl lg:text-6xl font-bold font-heading">2025 Sponsors</h1>
+    <h1 class="text-4xl lg:text-6xl font-bold font-heading">2026 Sponsors</h1>
     <section>
       <p class="mt-4 text-xl">
         We are proudly supported by our sponsors who help us run our contests,
@@ -48,6 +50,18 @@ import OptiverLogo from "../assets/sponsors/optiver.png";
         description="As a leading proprietary trading firm, Optiver works to make markets more efficient, transparent and stable for all. We have close to 2,000 employees in offices around the world, united in their commitment to providing liquidity, competitive pricing and reliable risk management."
         image={OptiverLogo.src}
         alt="Optiver Logo"
+      />
+      <SponsorCard
+        name="HRT"
+        description="Hudson River Trading is a multi-asset class quantitative trading firm that provides liquidity on global markets and directly to our clients. We have built one of the world’s most advanced computing environments for research and development, modeling, and risk management, and are at the forefront of technical innovation for financial markets everywhere. We are thoughtful market leaders, committed to the health and longevity of global markets."
+        image={HRTLogo.src}
+        alt="HRT Logo"
+      />
+      <SponsorCard
+        name="Atlassian"
+        description="Atlassian is a global software company known for developing collaboration and productivity tools that help teams organise, discuss, and complete their work. Founded in 2002 in Sydney, Australia, Atlassian has grown to become a leader in the software industry, offering popular products such as Jira for project management, Confluence for team collaboration, and Trello for task organisation. Atlassian is renowned for its innovative and agile approach, fostering a culture of openness and teamwork. Atlassian's solutions are widely used by software development teams but also serve a variety of industries to enhance efficiency and collaboration across organisations."
+        image={AtlassianLogo.src}
+        alt="Atlassian Logo"
       />
     </section>
     <section class="mt-16 text-xl">
