@@ -1,6 +1,5 @@
 export const CONTACT_EMAIL = "contact@acpc.io";
 export const JOIN_LINK = "https://www.ausaadelaide.com.au/organisation/adelaidecpc/";
-export const CAMP_LINK = "https://camp.acpc.io";
 
 // Social Links
 export const DISCORD_LINK = "https://discord.gg/9yBJs68Sj4";
