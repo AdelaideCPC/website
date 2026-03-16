@@ -1,5 +1,6 @@
 ---
 import Main from "@/layouts/Main.astro";
+import { AUCPL_LINK } from "@/data/links";
 ---
 
 <Main title="About AUCPL | ACPC">
@@ -66,8 +67,10 @@ import Main from "@/layouts/Main.astro";
       <h2 class="text-2xl lg:text-4xl">How do I participate?</h2>
       <div class="py-4">
         <p class="pb-4 text-lg lg:text-xl">
-          We will be releasing sign-ups for AUCPL 2026 soon! Keep an eye on our
-          socials to stay updated. In the meantime, you can check out <a
+          Sign up for AUCPL 2026 <a
+            class="text-primary-light"
+            href={AUCPL_LINK}>here</a
+          >! You can also check out <a
             class="text-primary-light"
             href="https://aucpl.com">the AUCPL website</a
           > to try out past problems.
